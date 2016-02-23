@@ -1,0 +1,152 @@
+
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+	<!--[if lte IE 8]>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+ 	<![endif]-->
+ 	<style type="text/css">
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		html, body, #map {
+			height: 100%;
+		}
+		.info {
+		    padding: 6px 8px;
+		    font: 14px/16px Arial, Helvetica, sans-serif;
+		    background: white;
+		    background: rgba(255,255,255,0.8);
+		    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+		    border-radius: 5px;
+		}
+		.info h4 {
+		    margin: 0 0 5px;
+		    color: #777;
+		}
+		.legend {
+		    text-align: left;
+		    line-height: 18px;
+		    color: #555;
+		}
+		.legend i {
+		    width: 18px;
+		    height: 18px;
+		    float: left;
+		    margin-right: 8px;
+		    opacity: 0.7;
+		}
+
+ 	</style>
+	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<link rel="areas" type="application/json" href="./areas.geojson">
+<body>
+	<div id="map"></div>
+	<script>
+	
+	var map = L.map('map');
+
+	var floorplan = L.tileLayer('http://branigan.net/apps/floorplan/{z}/{x}/{y}.png', {
+		minZoom: 20,
+		maxZoom: 22
+	});
+
+	// colors from http://www.colourlovers.com/palette/1473/Ocean_Five
+	// actually from http://www.colourlovers.com/palette/932683/Compatible
+	function getColor(p) {
+	    return p == "Meeting" ? '#8EBE94' :
+	           p == "Phone" ? '#4E395D' :
+	           p == "Lounge"  ? '#DC5B3E' :
+	           p == "Relax" ? '#827085' :
+	           p == "Conference" ? '#CCFC8E' :
+	            '#CCC';
+	}
+	function style(feature) {
+	    return {
+	        fillColor: getColor(feature.properties.type),
+	        weight: 0,
+	        opacity: 1.0,
+	        //color: 'black',
+	        fillOpacity: 0.6
+	    };
+	}
+
+	var info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+		this._div.innerHTML = '<h4>Azavea Floor Plan</h4>' + (props ? 
+				'<b>' + props.name + '</b><br />' + props.type + '<br>~' + props.area + 'sqft'
+				: 'Hover over a room');
+	};
+
+	function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			fillOpacity: 0.8
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	$.getJSON($('link[rel="areas"]').attr("href"), function(data) {
+		geojson = L.geoJson(data, {
+			style:style,
+			onEachFeature: function (feature, layer) {
+				layer.on({
+					mouseover: highlightFeature,
+					mouseout: resetHighlight,
+				});
+			}
+		});
+		map.fitBounds(geojson.getBounds());
+		floorplan.addTo(map);
+		geojson.addTo(map);
+	});
+
+	info.addTo(map);
+
+	var legend = L.control({position: 'bottomleft'});
+
+	legend.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			types = ['Meeting', 'Phone', 'Lounge', 'Relax', 'Conference'],
+			labels = [];
+
+		for (var i = 0; i < types.length; i++) {
+			labels.push(
+				'<i style="background:' + getColor(types[i]) + '"></i> ' + types[i]);
+		}
+
+		labels.push('<i style="background: #fdb462"></i> Other');
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+	};
+
+	legend.addTo(map);
+	</script>
+</body>
+</html>
