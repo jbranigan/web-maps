@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 0,
         "type": "Lounge",
         "name": "",
         "area": 119
@@ -45,7 +45,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 1,
         "type": "Meeting",
         "name": "Salta",
         "area": 64
@@ -89,7 +89,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 2,
         "type": "Phone",
         "name": "",
         "area": 24
@@ -125,7 +125,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 3,
         "type": "Phone",
         "name": "",
         "area": 24
@@ -166,7 +166,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 4,
         "type": "Meeting",
         "name": "Saigon",
         "area": 133
@@ -207,7 +207,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 5,
         "type": "Meeting",
         "name": "Mumbai",
         "area": 137
@@ -248,7 +248,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 6,
         "type": "Meeting",
         "name": "Nairobi",
         "area": 182
@@ -284,7 +284,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 7,
         "type": "Storage",
         "name": "",
         "area": 89
@@ -320,7 +320,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 8,
         "type": "Work",
         "name": "",
         "area": 100
@@ -365,7 +365,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 9,
         "type": "Conference",
         "name": "Sydney",
         "area": 337
@@ -401,7 +401,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 10,
         "type": "Phone",
         "name": "",
         "area": 26
@@ -437,7 +437,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 11,
         "type": "Phone",
         "name": "",
         "area": 26
@@ -478,7 +478,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 12,
         "type": "Meeting",
         "name": "Jakarta",
         "area": 60
@@ -519,7 +519,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 13,
         "type": "Meeting",
         "name": "Shanghai",
         "area": 134
@@ -580,7 +580,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 14,
         "type": "Meeting",
         "name": "Tokyo",
         "area": 193
@@ -637,7 +637,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 15,
         "type": "Meeting",
         "name": "Kiev",
         "area": 198
@@ -690,7 +690,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 16,
         "type": "Meeting",
         "name": "Madrid",
         "area": 248
@@ -755,7 +755,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 17,
         "type": "Conference",
         "name": "Istanbul",
         "area": 1555
@@ -803,7 +803,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 18,
         "type": "Mechanical",
         "name": "",
         "area": 137
@@ -868,7 +868,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 19,
         "type": "Meeting",
         "name": "London",
         "area": 122
@@ -909,7 +909,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 20,
         "type": "Meeting",
         "name": "Springfield",
         "area": 142
@@ -958,7 +958,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 21,
         "type": "Relax",
         "name": "Stockholm",
         "area": 71
@@ -994,7 +994,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 22,
         "type": "IT",
         "name": "IT",
         "area": 95
@@ -1034,7 +1034,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 23,
         "type": "IT",
         "name": "Lab",
         "area": 229
@@ -1075,7 +1075,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 24,
         "type": "Relax",
         "name": "Oslo",
         "area": 60
@@ -1115,7 +1115,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 25,
         "type": "Phone",
         "name": "",
         "area": 25
@@ -1151,7 +1151,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 26,
         "type": "Phone",
         "name": "",
         "area": 24
@@ -1196,7 +1196,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 27,
         "type": "Meeting",
         "name": "New York",
         "area": 141
@@ -1237,7 +1237,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 28,
         "type": "Meeting",
         "name": "Toronto",
         "area": 142
@@ -1278,7 +1278,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 29,
         "type": "Meeting",
         "name": "Chicago",
         "area": 58
@@ -1314,7 +1314,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 30,
         "type": "Phone",
         "name": "",
         "area": 26
@@ -1350,7 +1350,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 31,
         "type": "Phone",
         "name": "",
         "area": 27
@@ -1386,7 +1386,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 32,
         "type": "Storage",
         "name": "",
         "area": 117
@@ -1426,7 +1426,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 33,
         "type": "Shower",
         "name": "Shower",
         "area": 59
@@ -1466,7 +1466,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 34,
         "type": "Bathroom",
         "name": "Women's Room",
         "area": 261
@@ -1502,7 +1502,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 35,
         "type": "Shower",
         "name": "Shower",
         "area": 59
@@ -1542,7 +1542,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 36,
         "type": "Bathroom",
         "name": "Men's Room",
         "area": 261
@@ -1583,7 +1583,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 37,
         "type": "Lounge",
         "name": "",
         "area": 120
@@ -1624,7 +1624,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 38,
         "type": "Bike Storage",
         "name": "Amsterdam",
         "area": 434
@@ -1665,7 +1665,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 39,
         "type": "Activity",
         "name": "Athens",
         "area": 887
@@ -1705,7 +1705,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 40,
         "type": "Kitchen",
         "name": "",
         "area": 1329
@@ -1761,7 +1761,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 41,
         "type": "Work Bar",
         "name": "",
         "area": 341
@@ -1806,7 +1806,7 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "id": "null",
+        "id": 42,
         "type": "Meeting",
         "name": "Paris",
         "area": 57
@@ -1842,7 +1842,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": null,
+        "id": 43,
         "type": "Lounge",
         "name": "",
         "area": 112

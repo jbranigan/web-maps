@@ -6,6 +6,7 @@
 	<!--[if lte IE 8]>
      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
  	<![endif]-->
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
  	<style type="text/css">
 		body {
 			padding: 0;
@@ -27,6 +28,18 @@
 		    margin: 0 0 5px;
 		    color: #777;
 		}
+		.label {
+			text-align: center;
+			font-size: 10px;
+			text-shadow: 0.5px 0.5px #eee;
+		}
+		.list {
+			padding: 4px;
+			list-style-type:none;
+		}
+		.list:hover {
+			background:#eee;
+		}
 		.legend {
 		    text-align: left;
 		    line-height: 18px;
@@ -42,6 +55,7 @@
 
  	</style>
 	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<link rel="areas" type="application/json" href="./areas.geojson">
 <body>
@@ -54,6 +68,16 @@
 		minZoom: 20,
 		maxZoom: 22
 	});
+
+	var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
+		attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+		subdomains: 'abcd',
+		minZoom: 0,
+		maxZoom: 22,
+		ext: 'png'
+	});
+
+	var geojson;
 
 	// colors from http://www.colourlovers.com/palette/1473/Ocean_Five
 	// actually from http://www.colourlovers.com/palette/932683/Compatible
@@ -75,42 +99,30 @@
 	    };
 	}
 
-	var info = L.control();
-
-	info.onAdd = function (map) {
-		this._div = L.DomUtil.create('div', 'info');
-		this.update();
-		return this._div;
-	};
-
-	info.update = function (props) {
-		this._div.innerHTML = '<h4>Azavea Floor Plan</h4>' + (props ? 
-				'<b>' + props.name + '</b><br />' + props.type + '<br>~' + props.area + 'sqft'
-				: '<br> Hover over a room <br> &nbsp;');
-	};
+	function getLayer(id) {
+		highlightFeature(geojson.feature.properties[id]);
+		console.log(id);
+	}
 
 	function highlightFeature(e) {
 		var layer = e.target;
 
+		// doesn't really do much now, but hanging on to it
 		layer.setStyle({
-			fillOpacity: 0.8
+			fillOpacity: 0.7
 		});
 
 		if (!L.Browser.ie && !L.Browser.opera) {
 			layer.bringToFront();
 		}
-
-		info.update(layer.feature.properties);
 	}
-
-	var geojson;
 
 	function resetHighlight(e) {
 		geojson.resetStyle(e.target);
-		info.update();
 	}
 
 	$.getJSON($('link[rel="areas"]').attr("href"), function(data) {
+		//var names = [];
 		geojson = L.geoJson(data, {
 			style:style,
 			onEachFeature: function (feature, layer) {
@@ -118,14 +130,24 @@
 					mouseover: highlightFeature,
 					mouseout: resetHighlight,
 				});
+				//for labels only on hover
+				//layer.bindLabel(feature.properties.name);
+
+				//static labels
+				var label = L.marker(layer.getBounds().getCenter(), {
+			      icon: L.divIcon({
+			        className: 'label',
+			        html: feature.properties.name,
+			        iconSize: [100, 14]
+			      })
+			    }).addTo(map);
 			}
 		});
 		map.fitBounds(geojson.getBounds());
+		Stamen_TonerLite.addTo(map);
 		floorplan.addTo(map);
 		geojson.addTo(map);
 	});
-
-	info.addTo(map);
 
 	var legend = L.control({position: 'bottomleft'});
 
