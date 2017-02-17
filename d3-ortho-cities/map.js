@@ -7,7 +7,7 @@ function getSize() {
 
 // variables for rotation and scale
 var rotate = [90.00, -20, 23.5];
-var scale = 1000;
+var scale = 300;
 
 var formatNumber = d3.format(",.0f");
 
@@ -25,45 +25,48 @@ function drawMap() {
   var path = d3.geo.path()
       .projection(projection);
 
-  //var m0,
-  //    o0;
+  var m0,
+     o0;
 
   // NOTE: this isn't really necessary, is jittery, and probably processor intensive
-  // var drag = d3.behavior.drag()
-  //   .on("dragstart", function() {
-  //   // Adapted from http://mbostock.github.io/d3/talk/20111018/azimuthal.html and updated for d3 v3
-  //     var proj = projection.rotate();
-  //     m0 = [d3.event.sourceEvent.pageX, d3.event.sourceEvent.pageY];
-  //     o0 = [-proj[0],-proj[1]];
-  //   })
-  //   .on("drag", function() {
-  //     if (m0) {
-  //       var m1 = [d3.event.sourceEvent.pageX, d3.event.sourceEvent.pageY],
-  //           o1 = [o0[0] + (m0[0] - m1[0]) / 4, o0[1] + (m1[1] - m0[1]) / 4];
-  //       projection.rotate([-o1[0], -o1[1], 23.5]);
-  //     }
+  var drag = d3.behavior.drag()
+    .on("dragstart", function() {
+    // Adapted from http://mbostock.github.io/d3/talk/20111018/azimuthal.html and updated for d3 v3
+      var proj = projection.rotate();
+      m0 = [d3.event.sourceEvent.pageX, d3.event.sourceEvent.pageY];
+      o0 = [-proj[0],-proj[1]];
+    })
+    .on("drag", function() {
+      if (m0) {
+        var m1 = [d3.event.sourceEvent.pageX, d3.event.sourceEvent.pageY],
+            o1 = [o0[0] + (m0[0] - m1[0]) / 4, o0[1] + (m1[1] - m0[1]) / 4];
+        projection.rotate([-o1[0], -o1[1], 23.5]);
+      }
 
-  //   // Update the map
-  //     path = d3.geo.path().projection(projection);
-  //     d3.selectAll("path").attr("d", path);
-  //     d3.selectAll(".symbol").attr("d", path.pointRadius(function(d) { return radius(d.properties.pop2010); }));
-  //   });
+    // Update the map
+      path = d3.geo.path().projection(projection);
+      d3.selectAll("path").attr("d", path);
+      d3.selectAll(".symbol").attr("d", path.pointRadius(function(d) {
+        return radius(d.properties.pop2010 * 1000);
+      }));
+    });
 
   var svg = d3.select(".jumbotron").append("svg")
       .attr("width", width)
-      .attr("height", height);
-      //.call(drag); neat, but janky
+      .attr("height", height)
+      .call(drag); // neat, but janky
+
+  var radius = d3.scale.sqrt()
+    .domain([0, 1e8])
+    .range([0, 50]);
 
   // just a background color - lines up with the globe boundary
   var fill = svg.append("circle")
       .attr("cx", width / 2)
       .attr("cy", height / 2)
-      .attr("r", width)
+      .attr("r", scale
+        )
       .style("fill", "#223537");
-
-  var radius = d3.scale.sqrt()
-    .domain([0, 1e8])
-    .range([0, 50]);
 
   svg.append("path")
       .datum(graticule)
