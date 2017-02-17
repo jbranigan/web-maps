@@ -80,13 +80,13 @@ body {
 
 /* for map container */
 .jumbotron {
-  background-color: #8A422D;
+  /*background-color: #8A422D;*/
 }
 
 /* d3 map styles */
 
 circle {
-  fill: none;
+  fill: #223537;
   stroke: #223537;
   stroke-opacity: .5;
 }
