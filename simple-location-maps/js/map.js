@@ -44,4 +44,5 @@ var nytWorld = function() {
     });
 };
 
+// Initialize with this map
 viceGlobe();
